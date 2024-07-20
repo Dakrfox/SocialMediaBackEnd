@@ -1,0 +1,26 @@
+{
+  "name": "socialmediabackend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./api/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Dakrfox/SocialMediaBackEnd.git"
+  },
+  "author": "Nicolas Martinez Herrera <business.nimh@outlook.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Dakrfox/SocialMediaBackEnd/issues"
+  },
+  "homepage": "https://github.com/Dakrfox/SocialMediaBackEnd#readme",
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
