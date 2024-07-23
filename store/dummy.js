@@ -14,7 +14,10 @@ async function get(id) {
   return db.users.find((user) => user.id === id);
 }
 
-async function upsert(user) {
+async function upsert(tabla, user) {
+  if (!db[tabla]) {
+    db[tabla] = []
+  }
   const id = user.id;
   const index = db.users.findIndex((user) => user.id === id);
   if (index > -1) {
@@ -22,6 +25,7 @@ async function upsert(user) {
   } else {
     db.users.push(user);
   }
+  console.log(db)
   return user;
 }
 
