@@ -15,7 +15,7 @@ module.exports = function (db) {
     return store.get(TABLA, id);
   }
   async function upsert(data) {
-    const user = { name: data.name, username: data.username };
+    const user = { name: data.name, username: data.username, password: data.password };
     if (data.id) {
       user.id = data.id;
     } else {
