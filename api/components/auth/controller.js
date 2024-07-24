@@ -1,5 +1,6 @@
 const TABLA = "auth";
 const auth = require("../../../auth/index");
+const bcrypt = require("bcrypt");
 
 
 module.exports = function (db) {
@@ -9,15 +10,21 @@ module.exports = function (db) {
   }
   async function login(username, password) {
     const data = await store.query(TABLA, { username: username });
-    console.log(data.password,"---", password);
-    if (data.password === password) {
-      return auth.sign(data);
-    } else {
-      throw new Error("Informacion invalida123");
-    }
+    return bcrypt.compare(password, data.password)
+      .then((res) => {
+        if (res) {
+          return auth.sign(data);
+        } else {
+          throw new Error("Informacion invalida");
+        }
+      } 
+        )
+        .catch((err) => {
+          throw new Error("Informacion invalida");
+        });
   }
 
-  function upsert(data) {
+  async function upsert(data) {
     const authData = {
       id: data.id,
     };
@@ -25,7 +32,7 @@ module.exports = function (db) {
       authData.username = data.username;
     }
     if (data.password) {
-      authData.password = data.password;
+      authData.password = await bcrypt.hash(data.password, 10); // data.password;
     }
     return store.upsert(TABLA, authData);
   }
