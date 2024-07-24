@@ -1,7 +1,7 @@
 const TABLA = "auth";
 const auth = require("../../../auth/index");
 const bcrypt = require("bcrypt");
-
+const error = require("../../../utils/error");
 
 module.exports = function (db) {
   let store = db;
@@ -15,12 +15,12 @@ module.exports = function (db) {
         if (res) {
           return auth.sign(data);
         } else {
-          throw new Error("Informacion invalida");
+          throw new error("Informacion invalida", 401);
         }
       } 
         )
         .catch((err) => {
-          throw new Error("Informacion invalida");
+          throw new error("Informacion invalida", 401);
         });
   }
 

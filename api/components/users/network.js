@@ -11,34 +11,26 @@ router.post('/', upsert);
 router.put('/', upsert);
 
 
-function list(req, res) {
+function list(req, res, next) {
   Controller.getAll()
     .then((lista) => {
       response.success(req, res,200, lista);
     })
-    .catch((err) => {
-      response.error(req, res, 500, err.message);
-    });
-};
-
-function get(req, res) {
+    .catch(next)
+  }
+function get(req, res, next) {
   Controller.get(req.params.id)
     .then((user) => {
       response.success(req, res, 200, user);
     })
-    .catch((err) => {
-      response.error(req, res, 500, err.message);
-    });
+    .catch(next)
 };
-function upsert(req, res) {
+function upsert(req, res, next) {
   Controller.upsert(req.body)
       .then((user) => {
           response.success(req, res, 200, user);
       })
-      .catch((err) => {
-          response.error(req, res, 500, err.message);
-      });
-  
+      .catch(next)
 }
 
 module.exports = router;

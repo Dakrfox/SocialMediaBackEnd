@@ -16,7 +16,7 @@ const check = {
         console.log(decoded);
 
         if (decoded.id !== owner) {
-            throw error(' No eres el propietario de este recurso', 401);
+            throw new error(' No eres el propietario de este recurso', 401);
         }
     },
 }
