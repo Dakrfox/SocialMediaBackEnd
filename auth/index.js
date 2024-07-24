@@ -1,8 +1,7 @@
 const jwt = require('jsonwebtoken');
-const { error } = require('../network/response');
 const config = require('../config');
 const secret = config.jwt.secret;
-
+const error = require('../utils/error');
 function sign(user){
   return jwt.sign(user, secret);
 }
@@ -17,7 +16,7 @@ const check = {
         console.log(decoded);
 
         if (decoded.id !== owner) {
-            throw new Error('No puedes hacer esto');
+            throw error(' No eres el propietario de este recurso', 401);
         }
     },
 }
