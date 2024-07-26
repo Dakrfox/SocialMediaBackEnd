@@ -7,6 +7,10 @@ const router = express.Router();
 
 // Routes
 router.get('/', list);
+router.get('/:id', get);
+router.post('/', upsert);
+router.get('/user/:id', getByUser);
+router.put('/', upsert);
 
 // functions
 function list(req, res, next) {
