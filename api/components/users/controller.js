@@ -35,5 +35,14 @@ module.exports = function (db) {
     })
   }
 
+  function following (user) {
+    const join = {}
+    join[TABLA] = 'user_to';
+    const query = {
+      user_from: user
+    }
+    return store.query(TABLA + '_follow', { user_to: id })
+  }
+
   return { getAll, get, upsert, follow };
 };
