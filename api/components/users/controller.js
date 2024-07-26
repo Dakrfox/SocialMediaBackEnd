@@ -27,5 +27,13 @@ module.exports = function (db) {
 
     return store.upsert(TABLA, user);
   }
-  return { getAll, get, upsert };
+
+  function follow (from, to ) {
+    return store.upsert(TABLA + '_follow', {
+      user_from: from,
+      user_to: to
+    })
+  }
+
+  return { getAll, get, upsert, follow };
 };

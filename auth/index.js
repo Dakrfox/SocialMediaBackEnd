@@ -19,6 +19,9 @@ const check = {
             throw new error(' No eres el propietario de este recurso', 401);
         }
     },
+    logged: function(req) {
+        const decoded = decodeHeader(req);
+    },
 }
 function getToken(authorization) {
     if (!authorization) {
